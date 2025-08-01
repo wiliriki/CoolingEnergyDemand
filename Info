@@ -1,0 +1,62 @@
+# CoolingEnergyDemand Extension for CityJSON
+
+**Version**: 1.0  
+**Author**: Wiliyan Ricky  
+**Institution**: Universiti Teknologi Malaysia  
+**Created**: 2025-08-02  
+**URL**: [CoolingEnergyDemand.ext.json](https://yourdomain.org/extensions/CoolingEnergyDemand.ext.json)
+
+---
+
+## Overview
+
+The `CoolingEnergyDemand` Extension allows the CityJSON `BuildingRoom` object to store **zone-level cooling load metrics**, integrating the:
+
+- **Overall Thermal Transfer Value (OTTV)** from envelope surfaces  
+- **Air Change Method (ACM)** based on ventilation and volume
+
+This supports sustainable cooling analysis in 3D geospatial models and enhances compatibility with CityGML Energy ADE concepts.
+
+---
+
+## Target Object
+
+This extension enriches:
+
+- `BuildingRoom`
+
+---
+
+## Schema Additions
+
+Under `attributes` → `externalData`:
+
+```json
+"+CoolingEnergyDemand": {
+  "ottv_total_w": 3567.0,
+  "acm_w": 1034.0,
+  "qheatload_total_w": 4601.0
+}
+```
+
+### Attribute Descriptions:
+
+| Attribute            | Type   | Description                                    |
+|----------------------|--------|------------------------------------------------|
+| `ottv_total_w`       | number | Cooling load due to envelope heat gain (OTTV) |
+| `acm_w`              | number | Cooling load due to air change (ACM)          |
+| `qheatload_total_w`  | number | Total cooling load = OTTV + ACM               |
+
+---
+
+## Validation
+
+To validate your enriched CityJSON file:
+
+```bash
+cityjson validate myfile.city.json --ext CoolingEnergyDemand.ext.json
+```
+
+Or use the online tool at [https://www.cityjson.org/tools](https://www.cityjson.org/tools)
+
+---
