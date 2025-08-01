@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "CityJSONExtension",
   "name": "CoolingEnergyDemand",
-  "uri": "https://github.com/wiliriki/CoolingEnergyDemand/new/main",
+  "uri": "https://github.com/wiliriki/CoolingEnergyDemand/blob/main/Extension",
   "version": "1.0",
   "description": "Extension for storing cooling energy demand values based on OTTV and ACM integration at the BuildingRoom level.",
   "extraCityObjects": {},
