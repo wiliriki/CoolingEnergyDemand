@@ -1,34 +1,36 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "CityJSONExtension",
-  "name": "CoolingEnergyDemand",
-  "uri": "https://github.com/wiliriki/CoolingEnergyDemand/blob/main/Extension",
-  "version": "1.0",
-  "description": "Extension for storing cooling energy demand values based on OTTV and ACM integration at the BuildingRoom level.",
-  "extraCityObjects": {},
-  "extraAttributes": {
-    "BuildingRoom": {
-      "+CoolingEnergyDemand": {
-        "type": "object",
-        "title": "CoolingEnergyDemand",
-        "description": "Cooling load data using the combined OTTV + ACM method.",
-        "properties": {
-          "ottv_total_w": {
-            "type": "number",
-            "description": "Heat gain from envelope (OTTV) in watts."
-          },
-          "acm_w": {
-            "type": "number",
-            "description": "Heat gain from air change (ACM) in watts."
-          },
-          "qheatload_total_w": {
-            "type": "number",
-            "description": "Total cooling load (sum of OTTV and ACM) in watts."
-          }
-        },
-        "required": ["ottv_total_w", "acm_w", "qheatload_total_w"]
-      }
+    "type": "CityJSONExtension",
+    "name": "CoolingEnergyDemand",
+    "uri": "https://yourdomain.org/extensions/CoolingEnergyDemand.ext.json",
+    "version": "1.0",
+    "description": "Extension for storing cooling energy demand values based on OTTV and ACM integration at the BuildingRoom level.",
+    "extraCityObjects": {},
+    "extraAttributes": {
+        "BuildingRoom": {
+            "+CoolingEnergyDemand": {
+                "type": "object",
+                "title": "CoolingEnergyDemand",
+                "description": "Cooling load data using the combined OTTV + ACM method.",
+                "properties": {
+                    "ottv_total_w": {
+                        "type": "number",
+                        "description": "Heat gain from envelope (OTTV) in watts."
+                    },
+                    "acm_w": {
+                        "type": "number",
+                        "description": "Heat gain from air change (ACM) in watts."
+                    },
+                    "qheatload_total_w": {
+                        "type": "number",
+                        "description": "Total cooling load (sum of OTTV and ACM) in watts."
+                    }
+                },
+                "required": [
+                    "ottv_total_w",
+                    "acm_w",
+                    "qheatload_total_w"
+                ]
+            }
+        }
     }
-  }
-  
 }
