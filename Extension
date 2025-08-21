@@ -6,6 +6,7 @@
   "properties": {
     "type": { "enum": ["CityJSON"] },
     "version": { "type": "1.0" },
+    "versionCityJSON": "2.0",
     "CityObjects": {
       "type": "object",
       "additionalProperties": {
