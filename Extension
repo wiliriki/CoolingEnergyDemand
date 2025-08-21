@@ -1,5 +1,5 @@
 {
-  "$schema": "https://github.com/wiliriki/CoolingEnergyDemand/blob/main/Extension",
+  "$schema": "https://raw.githubusercontent.com/wiliriki/CoolingEnergyDemand/main/CoolingEnergyDemand.ext.json",
   "type": "CityJSONExtension",
   "title": "CoolingEnergyDemand Extension",
   "description": "Room-level cooling results and (optional) inputs/metadata for OTTV+ACM.",
