@@ -5,7 +5,7 @@
   "description": "Room-level cooling results and (optional) inputs/metadata for OTTV+ACM.",
   "properties": {
     "type": { "enum": ["CityJSON"] },
-    "version": { "type": "string" },
+    "version": { "type": "1.0" },
     "CityObjects": {
       "type": "object",
       "additionalProperties": {
