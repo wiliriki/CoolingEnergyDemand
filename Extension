@@ -1,40 +1,67 @@
 {
-  "type": ["CityJSONExtension"],
-  "name": "CoolingEnergyDemand",
-  "description": "Extension for storing cooling energy demand values based on OTTV and ACM integration at the BuildingRoom level",
-  "url": "https://github.com/wiliriki/CoolingEnergyDemand/blob/main/Extension",
-  "version": "1.0",
-  "versionCityJSON": "2.0",
-  "extraAttributes": {
-    "BuildingRoom": {
-      "+CoolingEnergyDemand": {
+  "$schema": "https://github.com/wiliriki/CoolingEnergyDemand/blob/main/Extension",
+  "type": "CityJSONExtension",
+  "title": "CoolingEnergyDemand Extension",
+  "description": "Room-level cooling results and (optional) inputs/metadata for OTTV+ACM.",
+  "properties": {
+    "type": { "enum": ["CityJSON"] },
+    "version": { "type": "string" },
+    "CityObjects": {
+      "type": "object",
+      "additionalProperties": {
         "type": "object",
-        "description": "Cooling load data using the combined OTTV + ACM method",
         "properties": {
-          "ottv_total_w": {
-            "type": "number",
-            "description": "Heat gain from envelope (OTTV) in watts"
-          },
-          "acm_w": {
-            "type": "number",
-            "description": "Heat gain from air change (ACM) in watts"
-          },
-          "qheatload_total_w": {
-            "type": "number",
-            "description": "Total cooling load (sum of OTTV and ACM) in watts"
+          "type": { "type": "string" },
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "+CoolingEnergyDemand": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["qheatload_total_w", "ottv_total_w", "acm_w"],
+                "properties": {
+                  "qheatload_total_w": { "type": "number" },
+                  "ottv_total_w":      { "type": "number" },
+                  "acm_w":             { "type": "number" }
+                }
+              },
+              "+CoolingInputs": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "alpha":        { "type": "number", "minimum": 0, "maximum": 1 },
+                  "wwr":          { "type": "number", "minimum": 0, "maximum": 1 },
+                  "uw":           { "type": "number" },
+                  "uf":           { "type": "number" },
+                  "of":           { "type": "number" },
+                  "cfm":          { "type": "number" },
+                  "volume_m3":    { "type": "number", "exclusiveMinimum": 0 },
+                  "sc_included":  { "type": "boolean", "default": false },
+                  "sc_value":     { "type": "number" },
+                  "volume_source":{ "type": "string", "enum": ["attribute","geometry"] }
+                },
+                "allOf": [
+                  {
+                    "if": { "properties": { "sc_included": { "const": true } } },
+                    "then": { "required": ["sc_value"] }
+                  }
+                ]
+              },
+              "+CoolingRun": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "method_id":       { "type": "string", "enum": ["OTTV_ACM"] },
+                  "equation_version":{ "type": "string" },
+                  "software":        { "type": "string" },
+                  "run_timestamp":   { "type": "string" },
+                  "notes":           { "type": "string" }
+                }
+              }
+            }
           }
-        },
-        "required": ["ottv_total_w", "acm_w", "qheatload_total_w"],
-        "additionalProperties": false
+        }
       }
     }
-  },
-  "extraCityObjects": {},
-  "extraRootProperties": {},
-  "extraSemanticSurfaces": {},
-  "meta": {
-    "source": "CityJSON Extension generated for sustainable cooling analysis",
-    "date": "2025-08-02",
-    "version": "1.0"
   }
 }
