@@ -1,0 +1,34 @@
+{
+  "type": "CityJSONExtension",
+  "name": "CoolingEnergyDemand",
+  "version": "1.0",
+  "versionCityJSON": "2.0",
+  "description": "Minimal schema for room-level cooling demand results used by the +CoolingEnergyDemand attribute.",
+  "extraAttributes": {
+    "BuildingRoom": {
+      "type": "object",
+      "properties": {
+        "+CoolingEnergyDemand": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "qheatload_total_w",
+            "ottv_total_w",
+            "acm_w"
+          ],
+          "properties": {
+            "qheatload_total_w": {
+              "type": "number"
+            },
+            "ottv_total_w": {
+              "type": "number"
+            },
+            "acm_w": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    }
+  }
+}
