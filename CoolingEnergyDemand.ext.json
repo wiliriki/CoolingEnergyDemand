@@ -2,7 +2,7 @@
   "type": "CityJSONExtension",
   "name": "CoolingEnergyDemand",
   "description": "Requires three flat attributes (+qheatload_total_w, +ottv_total_w, +acm_w) on BuildingRoom.",
-  "url": "https://raw.githubusercontent.com/<you>/<repo>/main/CoolingEnergyDemand.ext.json",
+  "url": "https://raw.githubusercontent.com/wiliriki/CoolingEnergyDemand/refs/heads/main/CoolingEnergyDemand.ext.json",
   "version": "1.0",
   "versionCityJSON": "2.0",
   "extraAttributes": {
