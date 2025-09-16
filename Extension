@@ -1,53 +1,37 @@
 {
-  "$schema": "https://www.cityjson.org/schemas/2.0/cityjson.extension.schema.json",
   "type": "CityJSONExtension",
   "name": "CoolingEnergyDemand",
   "version": "1.0",
-  "extends": "CityJSON",
+  "url": "https://raw.githubusercontent.com/wiliriki/CoolingEnergyDemand/main/CoolingEnergyDemand1.ext.json",
 
-  "extraCityObjectAttributes": {
-    "BuildingRoom": {
-      "+CoolingEnergyDemand": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["qheatload_total_w", "ottv_total_w", "acm_w"],
+  "description": "Adds room-level cooling load outputs (+CoolingEnergyDemand) and OTTV+ACM inputs.",
+  "extraAttributes": {
+    "CityObjects": {
+      "BuildingRoom": {
         "properties": {
-          "qheatload_total_w": { "type": "number" },
-          "ottv_total_w":      { "type": "number" },
-          "acm_w":             { "type": "number" }
-        }
-      },
-      "+CoolingInputs": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "alpha":         { "type": "number", "minimum": 0, "maximum": 1 },
-          "wwr":           { "type": "number", "minimum": 0, "maximum": 1 },
-          "uw":            { "type": "number" },
-          "uf":            { "type": "number" },
-          "of":            { "type": "number" },
-          "cfm":           { "type": "number" },
-          "volume_m3":     { "type": "number", "exclusiveMinimum": 0 },
-          "sc_included":   { "type": "boolean", "default": false },
-          "sc_value":      { "type": "number" },
-          "volume_source": { "type": "string", "enum": ["attribute", "geometry"] }
-        },
-        "allOf": [
-          {
-            "if":   { "properties": { "sc_included": { "const": true } } },
-            "then": { "required": ["sc_value"] }
+          "+CoolingEnergyDemand": {
+            "type": "object",
+            "properties": {
+              "ottv_total_w": { "type": "number" },
+              "acm_w": { "type": "number" },
+              "qheatload_total_w": { "type": "number" }
+            },
+            "additionalProperties": false,
+            "required": ["ottv_total_w", "acm_w", "qheatload_total_w"]
+          },
+          "externalData": {
+            "type": "object",
+            "properties": {
+              "alpha": { "type": "number" },
+              "wwr": { "type": "number" },
+              "uw": { "type": "number" },
+              "uf": { "type": "number" },
+              "of": { "type": "number" },
+              "sc": { "type": "number" },
+              "cfm": { "type": "number" },
+              "volume": { "type": "number" }
+            }
           }
-        ]
-      },
-      "+CoolingRun": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "method_id":        { "type": "string", "enum": ["OTTV_ACM"] },
-          "equation_version": { "type": "string" },
-          "software":         { "type": "string" },
-          "run_timestamp":    { "type": "string" },
-          "notes":            { "type": "string" }
         }
       }
     }
