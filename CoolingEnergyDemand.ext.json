@@ -4,6 +4,7 @@
   "version": "1.0",
   "versionCityJSON": "2.0",
   "description": "Minimal schema for room-level cooling demand results used by the +CoolingEnergyDemand attribute.",
+  "url":"https://github.com/wiliriki/CoolingEnergyDemand/blob/main/CoolingEnergyDemand.ext.json",
   "extraAttributes": {
     "BuildingRoom": {
       "type": "object",
